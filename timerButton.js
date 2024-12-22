@@ -1,16 +1,7 @@
 let startTime;
 let timerInterval;
 
-if (window.location.href === 'https://murphnat.github.io/airwaytimer/old') {
-    window.location.href === 'https://murphnat.github.io/airwaytimer/old_index'
-}
-if (window.location.href === 'old.murphnat.github.io/airwaytimer/') {
-    window.location.href === 'https://murphnat.github.io/airwaytimer/old_index'
-}
-if (window.location.href === 'https://old.murphnat.github.io/airwaytimer/') {
-    window.location.href === 'https://murphnat.github.io/airwaytimer/old_index'
-}
-
+//TODO: Fix logic later.
 function initFromURL() {
 
     const currState = new URLSearchParams(window.location.search);
@@ -82,6 +73,7 @@ function initFromURL() {
         document.getElementById('switchButton3').style.color = 'black';
         switchButton3.disabled = true;
 
+        //TODO: Deprecate.
         // for (let box = 1; box <= 5; box ++) {
         //     document.getElementById(`box${box}`).style.backgroundColor = "#cccccc";
         //     document.getElementById('dataProgressBar').animate([
@@ -99,6 +91,7 @@ function initFromURL() {
         // const boxesStr = progressBoxes || -1;
         // const boxes = parseInt(boxesStr)
 
+        //TODO: FIX.
         const five_minutes = 5 * 60 * 1000;
         const glowEffect = document.querySelector('.borderGlow');
     
@@ -107,7 +100,6 @@ function initFromURL() {
         // const alignment = lastBreathTime % five_minutes;
         // const nextBoxTime = five_minutes - alignment;
 
-        
         // if (boxes >= 0) {
         //     for (let i = 0; i <= boxes; i++) {
         //         document.getElementById(`box${i + 1}`).style.backgroundColor = "#50C878";
@@ -333,9 +325,9 @@ switchButton0.addEventListener('click', function() {
 
     // TODO: FIX
     // const url = new URL(window.location);
-    // url.searchParams.set('bladeInserted', 'true');
-    // url.searchParams.set('bladeInsertTime', currTimeStr);
-    // url.searchParams.set('bladeElapsedTime', elapsedTimeStr);
+    // url.searchParams.set('', 'true');
+    // url.searchParams.set('', currTimeStr);
+    // url.searchParams.set('', elapsedTimeStr);
     // window.history.pushState({}, '', url);
 
 });
@@ -366,9 +358,9 @@ switchButtonTube.addEventListener('click', function() {
 
     // TODO: FIX
     // const url = new URL(window.location);
-    // url.searchParams.set('bladeRemoved', true);
-    // url.searchParams.set('bladeRemovalTime', currTimeStr);
-    // url.searchParams.set('bladeRemElapsedTime', elapsedTimeStr);
+    // url.searchParams.set('', true);
+    // url.searchParams.set('', currTimeStr);
+    // url.searchParams.set('', elapsedTimeStr);
     // window.history.pushState({}, '', url);
 
 });
@@ -391,6 +383,7 @@ switchButton2.addEventListener('click', function() {
 
 switchButton3.addEventListener('click', function() {
 
+    //TODO: Deprecate.
     // for (let box = 1; box <= 5; box ++) {
     //     document.getElementById(`box${box}`).style.backgroundColor = "#cccccc";
     //     document.getElementById('dataProgressBar').animate([
@@ -416,23 +409,30 @@ switchButton3.addEventListener('click', function() {
     url.searchParams.set('breathElapsedTime', elapsedTimeStr);
     window.history.pushState({}, '', url)
 
-    const five_minutes = 5 * 60 * 1000;
+    // Testing:
     // const five_minutes = 10000
+
+    const five_minutes = 5 * 60 * 1000;
     const glowEffect = document.querySelector('.borderGlow');
 
     for (let i = 0; i < 5; i++) {
 
         setTimeout(() => {
 
+            //TODO: Deprecate.
             // document.getElementById(`box${i+1}`).style.backgroundColor = "#50C878";
             // url.searchParams.set('progressBoxes', i.toString());
+
             window.history.pushState({}, '', url);
 
             for (let pings = 0; pings < 3; pings++) {
                 setTimeout(() => {
+
+                    //TODO: Deprecate.
                     // if (document.getElementById('soundToggle').checked) {
                         // ping.play();
                     // }
+
                     glowEffect.classList.add('glow-active');                    
                     setTimeout(() => {
                         glowEffect.classList.remove('glow-active');
