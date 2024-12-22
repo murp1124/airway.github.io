@@ -1,6 +1,15 @@
 let startTime;
 let timerInterval;
 
+if (window.location.href === 'https://murphnat.github.io/airwaytimer/old') {
+    window.location.href === 'https://murphnat.github.io/airwaytimer/old_index'
+}
+if (window.location.href === 'old.murphnat.github.io/airwaytimer/') {
+    window.location.href === 'https://murphnat.github.io/airwaytimer/old_index'
+}
+if (window.location.href === 'https://old.murphnat.github.io/airwaytimer/') {
+    window.location.href === 'https://murphnat.github.io/airwaytimer/old_index'
+}
 
 function initFromURL() {
 
@@ -10,8 +19,10 @@ function initFromURL() {
     if (savedStartTime) {
         startTime = parseInt(savedStartTime);
         timerInterval = setInterval(updateElapsedTime, 100);
-        document.getElementById('firstRSIPush').textContent = 'Reset Timer';
-        document.getElementById('firstRSIPush').style.backgroundColor = 'rgb(233, 102, 102)';
+
+        // TODO: FIX
+        // document.getElementById('switchReset').textContent = 'Reset Timer';
+        // document.getElementById('switchReset').style.backgroundColor = 'rgb(233, 102, 102)';
        
         const options = {
 
@@ -38,7 +49,7 @@ function initFromURL() {
         const bladeElapsedTime = currState.get('bladeElapsedTime');
 
         document.getElementById('bladeInsertedValue').textContent = 
-            `~T+${bladeElapsedTime} at ${bladeInsertTime} CST`;
+            `${bladeElapsedTime} at ${bladeInsertTime}`;
         document.getElementById('switchButton1').style.color = 'black';
         switchButton1.disabled = true;
         switchButton2.disabled = false;
@@ -52,7 +63,7 @@ function initFromURL() {
         const bladeRemElapsedTime = currState.get('bladeRemElapsedTime');
 
         document.getElementById('bladeRemovedValue').textContent = 
-            `~T+${bladeRemElapsedTime} at ${bladeRemovalTime} CST`;
+            `${bladeRemElapsedTime} at ${bladeRemovalTime}`;
         document.getElementById('switchButton2').style.color = 'black';
         switchButton2.disabled = true;
         switchButton3.disabled = false;
@@ -67,97 +78,96 @@ function initFromURL() {
         const progressBoxes = currState.get('progressBoxes');
 
         document.getElementById('breathDeliveredValue').textContent = 
-            `~T+${breathElapsedTime} at ${breathDeliveredTime} CST`;
+            `${breathElapsedTime} at ${breathDeliveredTime}`;
         document.getElementById('switchButton3').style.color = 'black';
         switchButton3.disabled = true;
 
-        for (let box = 1; box <= 5; box ++) {
-            document.getElementById(`box${box}`).style.backgroundColor = "#cccccc";
-            document.getElementById('dataProgressBar').animate([
-                {
-                    opacity: 0
-                },
-                {
-                    opacity: 0.3
-                },
-                {
-                    opacity: 1
-                }], {duration: 1000});
-        }
+        // for (let box = 1; box <= 5; box ++) {
+        //     document.getElementById(`box${box}`).style.backgroundColor = "#cccccc";
+        //     document.getElementById('dataProgressBar').animate([
+        //         {
+        //             opacity: 0
+        //         },
+        //         {
+        //             opacity: 0.3
+        //         },
+        //         {
+        //             opacity: 1
+        //         }], {duration: 1000});
+        // }
 
-        const boxesStr = progressBoxes || -1;
-        const boxes = parseInt(boxesStr)
+        // const boxesStr = progressBoxes || -1;
+        // const boxes = parseInt(boxesStr)
 
         const five_minutes = 5 * 60 * 1000;
-        const ping = new Audio('https://github.com/murp1124/airwaytimer/raw/refs/heads/main/Sounds/beep_short_on.wav')
         const glowEffect = document.querySelector('.borderGlow');
     
-        const breathTime = new Date(startTime + parseTimeString(breathElapsedTime) * 1000);
-        const lastBreathTime = Date.now() - breathTime.getTime();
-        const alignment = lastBreathTime % five_minutes;
-        const nextBoxTime = five_minutes - alignment;
+        // const breathTime = new Date(startTime + parseTimeString(breathElapsedTime) * 1000);
+        // const lastBreathTime = Date.now() - breathTime.getTime();
+        // const alignment = lastBreathTime % five_minutes;
+        // const nextBoxTime = five_minutes - alignment;
 
         
-        if (boxes >= 0) {
-            for (let i = 0; i <= boxes; i++) {
-                document.getElementById(`box${i + 1}`).style.backgroundColor = "#50C878";
-            }
-        }
+        // if (boxes >= 0) {
+        //     for (let i = 0; i <= boxes; i++) {
+        //         document.getElementById(`box${i + 1}`).style.backgroundColor = "#50C878";
+        //     }
+        // }
 
         // Refactor this beast some other day *phewwww*
 
-        if (boxes === -1) {
+        // if (boxes === -1) {
 
-            for (let i = 0; i < 5; i++) {
+        //     for (let i = 0; i < 5; i++) {
 
-                currBox = boxes + 1
-                const delayVal = i === currBox ?
-                    nextBoxTime : nextBoxTime + (i - currBox) * five_minutes;
+        //         currBox = boxes + 1
+        //         const delayVal = i === currBox ?
+        //             nextBoxTime : nextBoxTime + (i - currBox) * five_minutes;
 
-                setTimeout(() => {
-                    for (let pings = 0; pings < 3; pings++) {
-                        setTimeout(() => {
-                            if (document.getElementById('soundToggle').checked) {
-                                ping.play();
-                            }
-                            glowEffect.classList.add('glow-active');                    
-                            setTimeout(() => {
-                                glowEffect.classList.remove('glow-active');
-                            }, 1000);
-                        }, 1500 * pings);
-                    }
+        //         setTimeout(() => {
+        //             for (let pings = 0; pings < 3; pings++) {
+        //                 setTimeout(() => {
+        //                     if (document.getElementById('soundToggle').checked) {
+        //                         ping.play();
+        //                     }
+        //                     glowEffect.classList.add('glow-active');                    
+        //                     setTimeout(() => {
+        //                         glowEffect.classList.remove('glow-active');
+        //                     }, 1000);
+        //                 }, 1500 * pings);
+        //             }
 
-                   document.getElementById(`box${i+1}`).style.backgroundColor = "#50C878";
+        //            document.getElementById(`box${i+1}`).style.backgroundColor = "#50C878";
 
-                }, delayVal);
-            }
+        //         }, delayVal);
+        //     }
 
-        } else {
+        // } else {
     
-            currBox = boxes + 1
-            for (let i = currBox; i < 5; i++) {
+        //     currBox = boxes + 1
+        //     for (let i = currBox; i < 5; i++) {
     
-                const delayVal = i === currBox ?
-                    nextBoxTime : nextBoxTime + (i - currBox) * five_minutes;
+        //         const delayVal = i === currBox ?
+        //             nextBoxTime : nextBoxTime + (i - currBox) * five_minutes;
     
-                setTimeout(() => {
-                    for (let pings = 0; pings < 3; pings++) {
-                        setTimeout(() => {
-                            if (document.getElementById('soundToggle').checked) {
-                                ping.play();
-                            }
-                            glowEffect.classList.add('glow-active');                    
-                            setTimeout(() => {
-                                glowEffect.classList.remove('glow-active');
-                            }, 1000);
-                        }, 1500 * pings);
-                    }
+        //         setTimeout(() => {
+        //             for (let pings = 0; pings < 3; pings++) {
+        //                 setTimeout(() => {
+        //                     if (document.getElementById('soundToggle').checked) {
+        //                         ping.play();
+        //                     }
+        //                     glowEffect.classList.add('glow-active');                    
+        //                     setTimeout(() => {
+        //                         glowEffect.classList.remove('glow-active');
+        //                     }, 1000);
+        //                 }, 1500 * pings);
+        //             }
         
-                    document.getElementById(`box${i+1}`).style.backgroundColor = "#50C878";
+        //             document.getElementById(`box${i+1}`).style.backgroundColor = "#50C878";
     
-                }, delayVal);
-            }
-        }
+        //         }, delayVal);
+        //     }
+        // }
     }
 
     function parseTimeString(timeStr) {
@@ -174,9 +184,6 @@ function startTimer() {
     updateStartTime();
     updateElapsedTime();
     timerInterval = setInterval(updateElapsedTime, 100);
-
-    document.getElementById('firstRSIPush').textContent = 'Reset Timer';
-    document.getElementById('firstRSIPush').style.backgroundColor = 'rgb(233, 102, 102)';
 
     switchButton1.disabled = false;
 
@@ -245,32 +252,6 @@ function getTimeComponents() {
 }
 
 
-let taps = 0;
-document.getElementById('firstRSIPush').addEventListener('click', function() {
-  
-    taps++;
-
-    if (this.textContent === 'RSI Meds Pushed') {
-        startTimer();
-        this.style.backgroundColor = 'rgb(255, 80, 80)';
-        taps = 0;
-    } else if (taps === 1) {
-        this.textContent = 'Confirm Reset';
-        this.style.backgroundColor = 'rgb(255, 110, 250)';
-        setTimeout(() => {
-            taps = 0;
-            this.textContent = 'Reset Timer';
-            this.style.backgroundColor = 'rgb(255, 80, 80)';
-        }, 3000);
-    } else if (taps === 2) {
-        initFromURL(true);
-        this.style.backgroundColor = '';
-        const baseURL = window.location.href.split('?')[0];
-        window.parent.location = baseURL;
-    }
-});
-
-
 function recordTime() {
 
     // Ensures T+ output is accurate relative to 
@@ -296,8 +277,13 @@ function recordTime() {
 }
 
 
+const switchButton0 = document.getElementById('firstRSIPush');
+
 const switchButton1 = document.getElementById('switchButton1');
 switchButton1.disabled = true;
+
+const switchButtonTube = document.getElementById('switchButtonTube');
+switchButtonTube.disabled = true
 
 const switchButton2 = document.getElementById('switchButton2');
 switchButton2.disabled = true;
@@ -305,14 +291,62 @@ switchButton2.disabled = true;
 const switchButton3 = document.getElementById('switchButton3');
 switchButton3.disabled = true;
 
+switchButton0.addEventListener('click', function() {
+    
+    startTimer();
+    const {elapsedTimeStr, currTimeStr} = recordTime();
+    document.getElementById('rsiMedsPushedValue').textContent = elapsedTimeStr + " at " + currTimeStr;
+    this.style.color = 'black'; 
+    this.disabled = true;
+    switchButton1.disabled = false;
+
+    const resetButton = document.createElement('button');
+    resetButton.id = 'switchReset';
+    resetButton.textContent = 'Reset Timer';
+
+    const spacer = document.createElement('br');
+    const divContent = document.querySelector('.content');
+    divContent.insertAdjacentElement('beforeEnd', spacer)
+    divContent.insertAdjacentElement('beforeEnd', resetButton);
+
+    let taps = 0;
+    document.getElementById('switchReset').addEventListener('click', function() {
+        taps++;
+        
+        if (taps === 1) {
+            this.textContent = 'Confirm Reset';
+            this.style.backgroundColor = 'rgb(255, 110, 250)';
+            
+            setTimeout(() => {
+                taps = 0;
+                this.textContent = 'Reset Timer';
+                this.style.backgroundColor = 'rgb(255, 80, 80)';
+            }, 3000);
+    
+        } else if (taps === 2) {
+            initFromURL(true);
+            this.style.backgroundColor = '';
+            const baseURL = window.location.href.split('?')[0];
+            window.parent.location = baseURL;
+        }
+    });
+
+    // TODO: FIX
+    // const url = new URL(window.location);
+    // url.searchParams.set('bladeInserted', 'true');
+    // url.searchParams.set('bladeInsertTime', currTimeStr);
+    // url.searchParams.set('bladeElapsedTime', elapsedTimeStr);
+    // window.history.pushState({}, '', url);
+
+});
 
 switchButton1.addEventListener('click', function() {
     
     const {elapsedTimeStr, currTimeStr} = recordTime();
-    document.getElementById('bladeInsertedValue').textContent = " ~T+" + elapsedTimeStr + " at " + currTimeStr + " CST";
+    document.getElementById('bladeInsertedValue').textContent = elapsedTimeStr + " at " + currTimeStr;
     document.getElementById('switchButton1').style.color = 'black';
     switchButton1.disabled = true;
-    switchButton2.disabled = false;
+    switchButtonTube.disabled = false;
 
     const url = new URL(window.location);
     url.searchParams.set('bladeInserted', 'true');
@@ -322,10 +356,27 @@ switchButton1.addEventListener('click', function() {
 
 });
 
+switchButtonTube.addEventListener('click', function() {
+   
+    const {elapsedTimeStr, currTimeStr} = recordTime();
+    document.getElementById('tubeInsertedValue').textContent = elapsedTimeStr + " at " + currTimeStr;
+    document.getElementById('switchButtonTube').style.color = 'black';
+    switchButtonTube.disabled = true;
+    switchButton2.disabled = false;
+
+    // TODO: FIX
+    // const url = new URL(window.location);
+    // url.searchParams.set('bladeRemoved', true);
+    // url.searchParams.set('bladeRemovalTime', currTimeStr);
+    // url.searchParams.set('bladeRemElapsedTime', elapsedTimeStr);
+    // window.history.pushState({}, '', url);
+
+});
+
 switchButton2.addEventListener('click', function() {
    
     const {elapsedTimeStr, currTimeStr} = recordTime();
-    document.getElementById('bladeRemovedValue').textContent = " ~T+" + elapsedTimeStr + " at " + currTimeStr + " CST";
+    document.getElementById('bladeRemovedValue').textContent = elapsedTimeStr + " at " + currTimeStr;
     document.getElementById('switchButton2').style.color = 'black';
     switchButton2.disabled = true;
     switchButton3.disabled = false;
@@ -340,22 +391,22 @@ switchButton2.addEventListener('click', function() {
 
 switchButton3.addEventListener('click', function() {
 
-    for (let box = 1; box <= 5; box ++) {
-        document.getElementById(`box${box}`).style.backgroundColor = "#cccccc";
-        document.getElementById('dataProgressBar').animate([
-            {
-                opacity: 0
-            },
-            {
-                opacity: 0.3
-            },
-            {
-                opacity: 1
-            }], {duration: 1000});
-    }
+    // for (let box = 1; box <= 5; box ++) {
+    //     document.getElementById(`box${box}`).style.backgroundColor = "#cccccc";
+    //     document.getElementById('dataProgressBar').animate([
+    //         {
+    //             opacity: 0
+    //         },
+    //         {
+    //             opacity: 0.3
+    //         },
+    //         {
+    //             opacity: 1
+    //         }], {duration: 1000});
+    // }
    
     const {elapsedTimeStr, currTimeStr} = recordTime();
-    document.getElementById('breathDeliveredValue').textContent = " ~T+" + elapsedTimeStr + " at " + currTimeStr + " CST";
+    document.getElementById('breathDeliveredValue').textContent = elapsedTimeStr + " at " + currTimeStr;
     document.getElementById('switchButton3').style.color = 'black';
     switchButton3.disabled = true;
 
@@ -366,22 +417,22 @@ switchButton3.addEventListener('click', function() {
     window.history.pushState({}, '', url)
 
     const five_minutes = 5 * 60 * 1000;
-    const ping = new Audio('https://github.com/murp1124/airwaytimer/raw/refs/heads/main/Sounds/beep_short_on.wav')
+    // const five_minutes = 10000
     const glowEffect = document.querySelector('.borderGlow');
 
     for (let i = 0; i < 5; i++) {
 
         setTimeout(() => {
 
-            document.getElementById(`box${i+1}`).style.backgroundColor = "#50C878";
-            url.searchParams.set('progressBoxes', i.toString());
+            // document.getElementById(`box${i+1}`).style.backgroundColor = "#50C878";
+            // url.searchParams.set('progressBoxes', i.toString());
             window.history.pushState({}, '', url);
 
             for (let pings = 0; pings < 3; pings++) {
                 setTimeout(() => {
-                    if (document.getElementById('soundToggle').checked) {
-                        ping.play();
-                    }
+                    // if (document.getElementById('soundToggle').checked) {
+                        // ping.play();
+                    // }
                     glowEffect.classList.add('glow-active');                    
                     setTimeout(() => {
                         glowEffect.classList.remove('glow-active');

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Airway Study Timer</title>
+    <link rel="stylesheet" href="old_style.css">
+</head>
+<body>
+    <div class="borderGlow">
+
+        <div class="timerContainer">
+            <h1>Airway Study Timer</h1>
+
+            <div id="timingData">
+                <div class="content">
+                    
+                    <div class="toggleContainer">
+                        <div class="toggleAudio">
+                            <label class="switch" id="audioSwitch">
+                                <input type="checkbox" id="soundToggle" checked>
+                                <img id="audioOn" src="https://raw.githubusercontent.com/murp1124/airwaytimer/0882db7c174c6d3a65bc435edfafdca090b06bab/Images/audio-on.svg" alt="Audio On">
+                                <img id="audioOff" src="https://raw.githubusercontent.com/murp1124/airwaytimer/0882db7c174c6d3a65bc435edfafdca090b06bab/Images/audio-mute.svg" alt="Audio Muted">
+                            </label>
+                        </div>
+
+                        <!-- <div class="toggleTime">
+                            <label class="switch">
+                                <input type="checkbox" id="timeToggle" checked>
+                            </label>
+                            <span>24-hr</span>
+                        </div> -->
+
+                        <div class="toggleHandoff">
+                            <button class="copyButton" onclick="universalCopyURL(this)">
+                                <img id="copyString" src="https://raw.githubusercontent.com/murp1124/airwaytimer/0882db7c174c6d3a65bc435edfafdca090b06bab/Images/copy-to-clipboard.svg" alt="Copy">
+                                <img id="copiedString" src="https://raw.githubusercontent.com/murp1124/airwaytimer/0882db7c174c6d3a65bc435edfafdca090b06bab/Images/copy-to-clipboard-success.svg" alt="Copied">
+                            </button>
+
+                            <script src="copyURL.js"></script>
+                        </div>
+                    </div>
+
+                    <button id="firstRSIPush">RSI Meds Pushed</button>
+
+                    <p><span><strong>Start Time (CST):</strong></span></p>
+                    <p id="startTime"><span id="startTimeValue">N/A</span></p>
+                    
+                    <p><span><strong>Elapsed Time:</strong></span></p>
+                    <p id="elapsedTime"><span id="elapsedTimeValue">00:00:00</span></p>
+                </div>
+            </div>
+
+            <button id="switchButton1">Laryngoscope Blade Inserted</span><span id="bladeInsertedValue"></span></button>
+            <button id="switchButton2">Laryngoscope Blade Removed</span><span id="bladeRemovedValue"></span></button>
+            <button id="switchButton3">BVM Breath Delivered</span><span id="breathDeliveredValue"></span></button>
+          
+            <div id="dataProgressBar">
+                <div id="box1" class="progressBox">1</div>
+                <div id="box2" class="progressBox">2</div>
+                <div id="box3" class="progressBox">3</div>
+                <div id="box4" class="progressBox">4</div>
+                <div id="box5" class="progressBox">5</div>
+            </div>
+
+        </div>
+        
+        <script src="old_timerButton.js"></script>
+    </div>
+</body>
+</html>

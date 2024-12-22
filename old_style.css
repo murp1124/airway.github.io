@@ -8,7 +8,7 @@ body {
     background-color: #f0f0f0;
 }
 
-h1 {
+h1{
     font-size: 30px;
 }
 
@@ -32,8 +32,7 @@ h1 {
     gap: 30px;
 }
 
-/* Deprecated */
-/* .toggleAudio {
+.toggleAudio {
     position: relative;
     display: inline-block;
     cursor: pointer;
@@ -75,7 +74,14 @@ h1 {
 
 .toggleAudio input:checked ~ #audioOn {
     opacity: 1;
+}
+
+
+/* .toggleTime {
+    padding: 5px 20px;
+    padding-bottom: 10px;
 } */
+
 
 .copyButton {
     position: relative;
@@ -105,10 +111,12 @@ h1 {
     opacity: 1;
 }
 
+
 .switch {
     position: relative;
     display: inline-block;
 }
+
 
 #timingData {
     border: rgba(202, 202, 202, 0.8);
@@ -120,74 +128,22 @@ h1 {
 }
 
 
-/* Button Container Styles */
-.button-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-
-/* Button Styles */
-#switchReset {
-    padding: 8px 16px;
+button #switchButton1, #switchButton2, #switchButton3 {
     font-size: 16px;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
     cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    min-height: 40px;
-    align-self: center;
-    background-color: rgb(255, 80, 80);
-    color: white;
-    min-width: 100px;
-}
-
-#firstRSIPush, #switchButton1, #switchButtonTube, 
-#switchButton2, #switchButton3 {
-    display: block;
-    width: 100%;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    min-height: 40px;
-    padding: 10px;
-    background-color: #f0f0f0;
-}
-
-#firstRSIPush:disabled, #switchButton1:disabled, #switchButtonTube:disabled, 
-#switchButton2:disabled, #switchButton3:disabled {
-    margin-left: auto;
-    margin-right: auto;
-    opacity: 80%;
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
-
-#firstRSIPush:disabled span, #switchButton1:disabled span, #switchButtonTube:disabled span,
-#switchButton2:disabled span, #switchButton3:disabled span {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    color: rgb(196, 25, 25);
-    font-size: 18px;
+    transition-duration: 0.4s;
 }
 
 
-/* Progress Bar Styles */
-/* #dataProgressBar {
+#dataProgressBar {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-top: 20px;
-} */
+}
 
-/* .progressBox {
+.progressBox {
     width: 30px;
     height: 30px;
     color: white;
@@ -197,10 +153,8 @@ h1 {
     align-items: center;
     justify-content: center;
     border: 2px solid white;
-} */
+}
 
-
-/* Timer Text Styles */
 p span {
     font-size: 1.2rem;
     margin: 0.5rem 0;
@@ -211,8 +165,51 @@ p span {
     margin: 0.5rem 0;
 }
 
+#firstRSIPush {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
 
-/* Border Glow Effect */
+#switchButton1, #switchButton2, #switchButton3 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    width: 300px;
+    min-height: 40px
+}
+
+#switchButton1:disabled, #switchButton2:disabled, 
+#switchButton3:disabled {
+    padding: 8px 16px;
+    opacity: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 16px;
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+#switchButton1:disabled span, #switchButton2:disabled span,
+#switchButton3:disabled span {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color:rgb(196, 25, 25);
+    font-size: 18px;
+}
+
 .borderGlow {
     position: relative;
     padding: 5px;
@@ -262,14 +259,18 @@ p span {
     }
 }
 
-
-/* Mobile Stuff */
 @media (max-width: 500px) {
     .timerContainer {
         padding: 1.6rem;
         padding-top: 45px;
-    }
 
+    }
+    
+    #switchButton1, #switchButton2, #switchButton3 {
+        padding: 8px 16px;
+        width: 290px;
+    }
+    
     p span, #elapsedTime, #startTime {
         font-size: 1.2rem;
     }

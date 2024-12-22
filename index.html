@@ -9,61 +9,50 @@
 </head>
 <body>
     <div class="borderGlow">
-
         <div class="timerContainer">
-            <h1>Airway Study Timer</h1>
+            <h1>RQI Airway Stopwatch</h1>
 
             <div id="timingData">
                 <div class="content">
-                    
-                    <div class="toggleContainer">
-                        <div class="toggleAudio">
-                            <label class="switch" id="audioSwitch">
-                                <input type="checkbox" id="soundToggle" checked>
-                                <img id="audioOn" src="https://raw.githubusercontent.com/murp1124/airwaytimer/0882db7c174c6d3a65bc435edfafdca090b06bab/Images/audio-on.svg" alt="Audio On">
-                                <img id="audioOff" src="https://raw.githubusercontent.com/murp1124/airwaytimer/0882db7c174c6d3a65bc435edfafdca090b06bab/Images/audio-mute.svg" alt="Audio Muted">
-                            </label>
-                        </div>
 
-                        <!-- <div class="toggleTime">
-                            <label class="switch">
-                                <input type="checkbox" id="timeToggle" checked>
-                            </label>
-                            <span>24-hr</span>
-                        </div> -->
-
-                        <div class="toggleHandoff">
-                            <button class="copyButton" onclick="universalCopyURL(this)">
-                                <img id="copyString" src="https://raw.githubusercontent.com/murp1124/airwaytimer/0882db7c174c6d3a65bc435edfafdca090b06bab/Images/copy-to-clipboard.svg" alt="Copy">
-                                <img id="copiedString" src="https://raw.githubusercontent.com/murp1124/airwaytimer/0882db7c174c6d3a65bc435edfafdca090b06bab/Images/copy-to-clipboard-success.svg" alt="Copied">
-                            </button>
-
-                            <script src="copyURL.js"></script>
-                        </div>
-                    </div>
-
-                    <button id="firstRSIPush">RSI Meds Pushed</button>
-
-                    <p><span><strong>Start Time (CST):</strong></span></p>
+                    <p><span><strong>Start Time:</strong></span></p>
                     <p id="startTime"><span id="startTimeValue">N/A</span></p>
                     
                     <p><span><strong>Elapsed Time:</strong></span></p>
                     <p id="elapsedTime"><span id="elapsedTimeValue">00:00:00</span></p>
+
+                    <!-- <button id="switchReset">Reset Timer</button> -->
+
                 </div>
             </div>
 
-            <button id="switchButton1">Laryngoscope Blade Inserted</span><span id="bladeInsertedValue"></span></button>
-            <button id="switchButton2">Laryngoscope Blade Removed</span><span id="bladeRemovedValue"></span></button>
-            <button id="switchButton3">BVM Breath Delivered</span><span id="breathDeliveredValue"></span></button>
+            <div class="button-container">
+                <button id="firstRSIPush">RSI MEDS PUSHED<span id="rsiMedsPushedValue"></span></button>
+                <button id="switchButton1">BLADE FIRST ENTERED MOUTH<span id="bladeInsertedValue"></span></button>
+                <button id="switchButtonTube">TUBE PLACED IN AIRWAY<span id="tubeInsertedValue"></span></button>
+                <button id="switchButton2">BLADE REMOVED FROM MOUTH<span id="bladeRemovedValue"></span></button>
+                <button id="switchButton3">FIRST BVM BREATH<span id="breathDeliveredValue"></span></button>
+            </div>
           
-            <div id="dataProgressBar">
+            <!-- <div id="dataProgressBar">
                 <div id="box1" class="progressBox">1</div>
                 <div id="box2" class="progressBox">2</div>
                 <div id="box3" class="progressBox">3</div>
                 <div id="box4" class="progressBox">4</div>
                 <div id="box5" class="progressBox">5</div>
-            </div>
+            </div> -->
 
+            <br>
+
+            <div class="toggleContainer">
+                <div class="toggleHandoff">
+                    <button class="copyButton" onclick="universalCopyURL(this)">
+                        <img id="copyString" src="https://raw.githubusercontent.com/murp1124/airwaytimer/0882db7c174c6d3a65bc435edfafdca090b06bab/Images/copy-to-clipboard.svg" alt="Copy">
+                        <img id="copiedString" src="https://raw.githubusercontent.com/murp1124/airwaytimer/0882db7c174c6d3a65bc435edfafdca090b06bab/Images/copy-to-clipboard-success.svg" alt="Copied">
+                    </button>
+                    <script src="copyURL.js"></script>
+                </div>
+            </div>
         </div>
         
         <script src="timerButton.js"></script>
