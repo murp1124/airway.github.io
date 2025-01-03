@@ -286,9 +286,16 @@ p span {
 
 /* Mobile Stuff */
 @media (max-width: 500px) {
+
+    .borderGlow {
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+
     .timerContainer {
         padding: 1.6rem;
-        padding-top: 45px;
+        padding-top: 100px;
+        padding-bottom: 150px;
     }
 
     p span, #elapsedTime, #startTime {
