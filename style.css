@@ -146,6 +146,23 @@ h1 {
     min-width: 100px;
 }
 
+#noRSIMeds {
+    display: block;
+    font-size: 13px;
+    cursor: pointer;
+    border: none;
+    border-left: 3px grey solid;
+    border-radius: 0px 5px 5px 0px;
+}
+
+#noRSIMeds:disabled {
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 80%;
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
 #firstRSIPush, #switchButton1, #switchButtonTube, 
 #switchButton2, #switchButton3 {
     display: block;
@@ -158,6 +175,10 @@ h1 {
     min-height: 40px;
     padding: 10px;
     background-color: #f0f0f0;
+}
+
+#firstRSIPush {
+    border-radius: 5px 0px 0px 5px;
 }
 
 #firstRSIPush:disabled, #switchButton1:disabled, #switchButtonTube:disabled, 

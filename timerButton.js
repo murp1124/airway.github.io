@@ -1,7 +1,6 @@
 let startTime;
 let timerInterval;
 
-//TODO: Fix logic later.
 function initFromURL() {
 
     const currState = new URLSearchParams(window.location.search);
@@ -10,10 +9,6 @@ function initFromURL() {
     if (savedStartTime) {
         startTime = parseInt(savedStartTime);
         timerInterval = setInterval(updateElapsedTime, 100);
-
-        // TODO: FIX
-        // document.getElementById('switchReset').textContent = 'Reset Timer';
-        // document.getElementById('switchReset').style.backgroundColor = 'rgb(233, 102, 102)';
        
         const options = {
 
@@ -32,6 +27,42 @@ function initFromURL() {
 
         switchButton1.disabled = false;
     }
+    
+
+    const noMedsState = currState.get('noMeds');
+
+    if (noMedsState === "true"){
+
+        createReset();
+    
+        noMeds.disabled = true;
+        document.getElementById('noRSIMeds').style.color = 'black';
+    
+        switchButton0.disabled = true;
+        switchButton1.disabled = false;
+        
+        noMedRoute = true;
+    }
+
+
+    const rsiMedsPushed = currState.get('rsiMedsPushed');
+
+    if (rsiMedsPushed === "true") {
+
+        createReset();
+
+        const rsiMedsPushedTime = currState.get('rsiMedsPushedTime');
+        const rsiMedsElapsedTime = currState.get('rsiMedsElapsedTime');
+
+        document.getElementById('rsiMedsPushedValue').textContent = 
+            `${rsiMedsElapsedTime} at ${rsiMedsPushedTime}`;
+        document.getElementById('firstRSIPush').style.color = 'black';
+        
+        noMeds.disabled = true;
+        switchButton0.disabled = true;
+        switchButton1.disabled = false;
+    }
+
 
     const bladeInserted = currState.get('bladeInserted');
 
@@ -43,9 +74,23 @@ function initFromURL() {
             `${bladeElapsedTime} at ${bladeInsertTime}`;
         document.getElementById('switchButton1').style.color = 'black';
         switchButton1.disabled = true;
-        switchButton2.disabled = false;
-
+        switchButtonTube.disabled = false;
     }
+
+
+    const tubeInserted = currState.get('tubeInserted');
+
+    if (tubeInserted === 'true') {
+        const tubeInsertedTime = currState.get('tubeInsertedTime');
+        const tubeInsertedElapsed = currState.get('tubeInsertedElapsed');
+
+        document.getElementById('tubeInsertedValue').textContent = 
+            `${tubeInsertedElapsed} at ${tubeInsertedTime}`;
+        document.getElementById('switchButtonTube').style.color = 'black';
+        switchButtonTube.disabled = true;
+        switchButton2.disabled = false;
+    }
+
 
     const bladeRemoved = currState.get('bladeRemoved');
 
@@ -269,33 +314,11 @@ function recordTime() {
 }
 
 
-const switchButton0 = document.getElementById('firstRSIPush');
-
-const switchButton1 = document.getElementById('switchButton1');
-switchButton1.disabled = true;
-
-const switchButtonTube = document.getElementById('switchButtonTube');
-switchButtonTube.disabled = true
-
-const switchButton2 = document.getElementById('switchButton2');
-switchButton2.disabled = true;
-
-const switchButton3 = document.getElementById('switchButton3');
-switchButton3.disabled = true;
-
-switchButton0.addEventListener('click', function() {
-    
-    startTimer();
-    const {elapsedTimeStr, currTimeStr} = recordTime();
-    document.getElementById('rsiMedsPushedValue').textContent = elapsedTimeStr + " at " + currTimeStr;
-    this.style.color = 'black'; 
-    this.disabled = true;
-    switchButton1.disabled = false;
-
+function createReset() {
     const resetButton = document.createElement('button');
     resetButton.id = 'switchReset';
-    resetButton.textContent = 'Reset Timer';
-
+    resetButton.textContent = 'Reset';
+    
     const spacer = document.createElement('br');
     const divContent = document.querySelector('.content');
     divContent.insertAdjacentElement('beforeEnd', spacer)
@@ -322,18 +345,72 @@ switchButton0.addEventListener('click', function() {
             window.parent.location = baseURL;
         }
     });
+};
 
-    // TODO: FIX
-    // const url = new URL(window.location);
-    // url.searchParams.set('', 'true');
-    // url.searchParams.set('', currTimeStr);
-    // url.searchParams.set('', elapsedTimeStr);
-    // window.history.pushState({}, '', url);
+
+const switchButton0 = document.getElementById('firstRSIPush');
+
+const noMeds = document.getElementById('noRSIMeds');
+let noMedRoute = false;
+
+const switchButton1 = document.getElementById('switchButton1');
+switchButton1.disabled = true;
+
+const switchButtonTube = document.getElementById('switchButtonTube');
+switchButtonTube.disabled = true
+
+const switchButton2 = document.getElementById('switchButton2');
+switchButton2.disabled = true;
+
+const switchButton3 = document.getElementById('switchButton3');
+switchButton3.disabled = true;
+
+
+noMeds.addEventListener('click', function (){
+    
+    document.getElementById('noRSIMeds').style.color = 'black';
+
+    // Disable RSI Meds Route
+    noMeds.disabled = true;
+    switchButton0.disabled = true;
+
+    // Start at Blade Entered
+    switchButton1.disabled = false;
+    noMedRoute = true;
+    
+    createReset();
+
+    const url = new URL(window.location);
+    url.searchParams.set('noMeds', true);
+    window.history.pushState({}, '', url);
+});
+
+switchButton0.addEventListener('click', function() {
+    
+    startTimer();
+    const {elapsedTimeStr, currTimeStr} = recordTime();
+    document.getElementById('rsiMedsPushedValue').textContent = elapsedTimeStr + " at " + currTimeStr;
+    this.style.color = 'black'; 
+    this.disabled = true;
+    noMeds.disabled = true;
+    switchButton1.disabled = false;
+
+    createReset();
+
+    const url = new URL(window.location);
+    url.searchParams.set('rsiMedsPushed', 'true');
+    url.searchParams.set('rsiMedsPushedTime', currTimeStr);
+    url.searchParams.set('rsiMedsElapsedTime', elapsedTimeStr);
+    window.history.pushState({}, '', url);
 
 });
 
 switchButton1.addEventListener('click', function() {
     
+    if (noMedRoute === true) {
+        startTimer();
+    }
+
     const {elapsedTimeStr, currTimeStr} = recordTime();
     document.getElementById('bladeInsertedValue').textContent = elapsedTimeStr + " at " + currTimeStr;
     document.getElementById('switchButton1').style.color = 'black';
@@ -345,7 +422,6 @@ switchButton1.addEventListener('click', function() {
     url.searchParams.set('bladeInsertTime', currTimeStr);
     url.searchParams.set('bladeElapsedTime', elapsedTimeStr);
     window.history.pushState({}, '', url);
-
 });
 
 switchButtonTube.addEventListener('click', function() {
@@ -356,12 +432,11 @@ switchButtonTube.addEventListener('click', function() {
     switchButtonTube.disabled = true;
     switchButton2.disabled = false;
 
-    // TODO: FIX
-    // const url = new URL(window.location);
-    // url.searchParams.set('', true);
-    // url.searchParams.set('', currTimeStr);
-    // url.searchParams.set('', elapsedTimeStr);
-    // window.history.pushState({}, '', url);
+    const url = new URL(window.location);
+    url.searchParams.set('tubeInserted', true);
+    url.searchParams.set('tubeInsertedTime', currTimeStr);
+    url.searchParams.set('tubeInsertedElapsed', elapsedTimeStr);
+    window.history.pushState({}, '', url);
 
 });
 
@@ -410,9 +485,9 @@ switchButton3.addEventListener('click', function() {
     window.history.pushState({}, '', url)
 
     // Testing:
-    // const five_minutes = 10000
+    const five_minutes = 10000
 
-    const five_minutes = 5 * 60 * 1000;
+    // const five_minutes = 5 * 60 * 1000;
     const glowEffect = document.querySelector('.borderGlow');
 
     for (let i = 0; i < 5; i++) {
