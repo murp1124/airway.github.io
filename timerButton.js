@@ -485,9 +485,9 @@ switchButton3.addEventListener('click', function() {
     window.history.pushState({}, '', url)
 
     // Testing:
-    const five_minutes = 10000
+    // const five_minutes = 10000
 
-    // const five_minutes = 5 * 60 * 1000;
+    const five_minutes = 5 * 60 * 1000;
     const glowEffect = document.querySelector('.borderGlow');
 
     for (let i = 0; i < 5; i++) {
