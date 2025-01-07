@@ -106,105 +106,59 @@ function initFromURL() {
 
     }
 
+
     const breathDelivered = currState.get('breathDelivered');
 
     if (breathDelivered === "true") {
         const breathDeliveredTime = currState.get('breathDeliveredTime');
         const breathElapsedTime = currState.get('breathElapsedTime');
-        const progressBoxes = currState.get('progressBoxes');
+        const alertLoop = currState.get('alertLoop');
 
         document.getElementById('breathDeliveredValue').textContent = 
             `${breathElapsedTime} at ${breathDeliveredTime}`;
         document.getElementById('switchButton3').style.color = 'black';
         switchButton3.disabled = true;
 
-        //TODO: Deprecate.
-        // for (let box = 1; box <= 5; box ++) {
-        //     document.getElementById(`box${box}`).style.backgroundColor = "#cccccc";
-        //     document.getElementById('dataProgressBar').animate([
-        //         {
-        //             opacity: 0
-        //         },
-        //         {
-        //             opacity: 0.3
-        //         },
-        //         {
-        //             opacity: 1
-        //         }], {duration: 1000});
-        // }
+        const alerts = parseInt(alertLoop) || 0;
+        console.log(alerts);
 
-        // const boxesStr = progressBoxes || -1;
-        // const boxes = parseInt(boxesStr)
+        // Testing:
+        // const five_minutes = 10000
 
-        //TODO: FIX.
+        // Production:
         const five_minutes = 5 * 60 * 1000;
+
         const glowEffect = document.querySelector('.borderGlow');
-    
-        // const breathTime = new Date(startTime + parseTimeString(breathElapsedTime) * 1000);
-        // const lastBreathTime = Date.now() - breathTime.getTime();
-        // const alignment = lastBreathTime % five_minutes;
-        // const nextBoxTime = five_minutes - alignment;
 
-        // if (boxes >= 0) {
-        //     for (let i = 0; i <= boxes; i++) {
-        //         document.getElementById(`box${i + 1}`).style.backgroundColor = "#50C878";
-        //     }
-        // }
+        const breathTime = new Date(startTime + parseTimeString(breathElapsedTime) * 1000);
+        const lastBreathTime = Date.now() - breathTime.getTime();
 
-        // Refactor this beast some other day *phewwww*
+        const currAlert = Math.floor(lastBreathTime / five_minutes);
+        const currBox = Math.max(alerts, currAlert);
 
-        // if (boxes === -1) {
+        const alignment = five_minutes - (lastBreathTime % five_minutes);
 
-        //     for (let i = 0; i < 5; i++) {
+        for (let i = currBox; i < 5; i++) {
+            const delayVal = i === currBox ?
+                alignment : alignment + (i - currBox) * five_minutes;
+                
+            setTimeout(() => {
+                const url = new URL(window.location);
+                url.searchParams.set('alertLoop', i.toString());
+                window.history.pushState({}, "", url);
 
-        //         currBox = boxes + 1
-        //         const delayVal = i === currBox ?
-        //             nextBoxTime : nextBoxTime + (i - currBox) * five_minutes;
+                for (let pings = 0; pings < 3; pings++) {
+                    setTimeout(() => {
+                        glowEffect.classList.add('glow-active');
+                        setTimeout(() => {
+                            glowEffect.classList.remove('glow-active');
+                        }, 1000);
+                    }, 1500 * pings);
+                }
 
-        //         setTimeout(() => {
-        //             for (let pings = 0; pings < 3; pings++) {
-        //                 setTimeout(() => {
-        //                     if (document.getElementById('soundToggle').checked) {
-        //                         ping.play();
-        //                     }
-        //                     glowEffect.classList.add('glow-active');                    
-        //                     setTimeout(() => {
-        //                         glowEffect.classList.remove('glow-active');
-        //                     }, 1000);
-        //                 }, 1500 * pings);
-        //             }
+            }, delayVal);
+        }
 
-        //            document.getElementById(`box${i+1}`).style.backgroundColor = "#50C878";
-
-        //         }, delayVal);
-        //     }
-
-        // } else {
-    
-        //     currBox = boxes + 1
-        //     for (let i = currBox; i < 5; i++) {
-    
-        //         const delayVal = i === currBox ?
-        //             nextBoxTime : nextBoxTime + (i - currBox) * five_minutes;
-    
-        //         setTimeout(() => {
-        //             for (let pings = 0; pings < 3; pings++) {
-        //                 setTimeout(() => {
-        //                     if (document.getElementById('soundToggle').checked) {
-        //                         ping.play();
-        //                     }
-        //                     glowEffect.classList.add('glow-active');                    
-        //                     setTimeout(() => {
-        //                         glowEffect.classList.remove('glow-active');
-        //                     }, 1000);
-        //                 }, 1500 * pings);
-        //             }
-        
-        //             document.getElementById(`box${i+1}`).style.backgroundColor = "#50C878";
-    
-        //         }, delayVal);
-        //     }
-        // }
     }
 
     function parseTimeString(timeStr) {
@@ -457,21 +411,6 @@ switchButton2.addEventListener('click', function() {
 });
 
 switchButton3.addEventListener('click', function() {
-
-    //TODO: Deprecate.
-    // for (let box = 1; box <= 5; box ++) {
-    //     document.getElementById(`box${box}`).style.backgroundColor = "#cccccc";
-    //     document.getElementById('dataProgressBar').animate([
-    //         {
-    //             opacity: 0
-    //         },
-    //         {
-    //             opacity: 0.3
-    //         },
-    //         {
-    //             opacity: 1
-    //         }], {duration: 1000});
-    // }
    
     const {elapsedTimeStr, currTimeStr} = recordTime();
     document.getElementById('breathDeliveredValue').textContent = elapsedTimeStr + " at " + currTimeStr;
@@ -482,28 +421,31 @@ switchButton3.addEventListener('click', function() {
     url.searchParams.set('breathDelivered', 'true');
     url.searchParams.set('breathDeliveredTime', currTimeStr);
     url.searchParams.set('breathElapsedTime', elapsedTimeStr);
+    url.searchParams.set('alertLoop', '0');
     window.history.pushState({}, '', url)
 
     // Testing:
     // const five_minutes = 10000
 
+    // Production:
     const five_minutes = 5 * 60 * 1000;
+
     const glowEffect = document.querySelector('.borderGlow');
 
     for (let i = 0; i < 5; i++) {
 
         setTimeout(() => {
 
-            //TODO: Deprecate.
-            // document.getElementById(`box${i+1}`).style.backgroundColor = "#50C878";
-            // url.searchParams.set('progressBoxes', i.toString());
-
+            url.searchParams.set('alertLoop', i.toString());
             window.history.pushState({}, '', url);
+
+            // DEBUG
+            // console.log("Alert Loop (pre-copy):", i)
 
             for (let pings = 0; pings < 3; pings++) {
                 setTimeout(() => {
 
-                    //TODO: Deprecate.
+                    //TODO: Make Secret Option.
                     // if (document.getElementById('soundToggle').checked) {
                         // ping.play();
                     // }
