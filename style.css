@@ -410,3 +410,52 @@ p span {
 
 }
 
+
+@media (min-width: 400px) {
+
+    h1 {
+        padding-top: 60px;
+    }
+
+    .content {
+        font-size: 10px;
+    }
+
+    .timerContainer {
+        height: 70vh;
+        width: 300px;
+    }
+
+
+/* PC / Laptop / iPad */
+@media (min-width: 720px) {
+
+    h1 {
+        padding-top: 60px;
+    }
+
+    .timerContainer {
+        max-height: 70vh;
+        height: auto;
+        width: 350px;
+    }
+
+    .toggleContainer {
+        padding-bottom: 100px;
+    }
+
+}
+
+@media (min-width: 2560px) {
+
+    .timerContainer {
+        max-height: 50vh;
+        height: auto;
+        width: 350px;
+    }
+
+    .toggleContainer {
+        padding-bottom: 100px;
+    }
+
+}
