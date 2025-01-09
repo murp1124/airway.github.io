@@ -158,10 +158,10 @@ function initFromURL() {
         console.log(alerts);
 
         // Testing:
-        const five_minutes = 10000
+        // const five_minutes = 10000
 
         // Production:
-        // const five_minutes = 5 * 60 * 1000;
+        const five_minutes = 5 * 60 * 1000;
 
         const glowEffect = document.querySelector('.borderGlow');
 
@@ -507,10 +507,10 @@ switchButton3.addEventListener('click', function() {
     // }, 500);
 
     // Testing:
-    const five_minutes = 10000
+    // const five_minutes = 10000
 
     // Production:
-    // const five_minutes = 5 * 60 * 1000;
+    const five_minutes = 5 * 60 * 1000;
 
     const glowEffect = document.querySelector('.borderGlow');
 
