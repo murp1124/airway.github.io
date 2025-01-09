@@ -1,24 +1,55 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
     background-color: #f0f0f0;
 }
 
 h1 {
     font-size: 30px;
+    /* position: sticky;  */
+    /* top: -50px;  */
+    padding-bottom: 5px;
+    margin: 0;
+    padding-top: 10px
+}
+
+.scrollOverlay {
+    /* position: sticky; 
+    top: -45px;  */
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    padding-top: 10px;
+    /* z-index: 10; */
 }
 
 .timerContainer {
     text-align: center;
-    background-color: white;
+    background-color: f0f0f0;
     padding: 2.2rem;
     padding-top: 45px;
     border-radius: 16px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    overflow-y: auto;
+    scrollbar-width: none;
+    max-height: 75vh;
+    
+    /* position: sticky; 
+    top: -45px;  */
+    background-color: rgba(240, 240, 240, 0.8);
+    backdrop-filter: blur(5px);
+    padding-top: 10px;
+    /* z-index: 10; */
 }
 
 .content {
@@ -31,6 +62,7 @@ h1 {
     justify-content: center;
     gap: 30px;
 }
+
 
 /* Deprecated */
 /* .toggleAudio {
@@ -117,6 +149,16 @@ h1 {
     margin-bottom: 30px; 
     border-right-style: ridge;
     border-left-style: groove;
+
+    /* position: sticky; 
+    top: 80px;  */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding-top: 10px;
+    border-radius: 15px 15px 15px 15px;
+    /* z-index: 2; */
+    /* box-shadow: 0 -100px 0 white; */
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 
@@ -126,7 +168,7 @@ h1 {
     flex-direction: column;
     gap: 15px;
     width: 100%;
-    max-width: 400px;
+    max-width: 300px;
     margin: 0 auto;
 }
 
@@ -153,6 +195,7 @@ h1 {
     border: none;
     border-left: 3px grey solid;
     border-radius: 0px 5px 5px 0px;
+    background-color: #e7e7e7;
 }
 
 #noRSIMeds:disabled {
@@ -174,11 +217,12 @@ h1 {
     transition: background-color 0.3s;
     min-height: 40px;
     padding: 10px;
-    background-color: #f0f0f0;
+    background-color: #e7e7e7;
 }
 
 #firstRSIPush {
     border-radius: 5px 0px 0px 5px;
+    background-color: #e7e7e7;
 }
 
 #firstRSIPush:disabled, #switchButton1:disabled, #switchButtonTube:disabled, 
@@ -237,26 +281,29 @@ p span {
 .borderGlow {
     position: relative;
     padding: 5px;
+    z-index: 999;
 }
 
 .borderGlow::before {
     content: '';
     position: absolute;
     border: 6px solid rgba(255,82,82,0.5);
-    background-color: rgba(255, 146, 146, 0.3);
+    background-color: rgba(236, 48, 48, 0.342);
     border-radius: 25px;
     box-shadow: 
-        0 0 10px rgba(255,82,82,0.7),
-        0 0 10px rgba(255,82,82,0.7),
+        0 0 10px rgba(209, 13, 13, 0.7),
+        0 0 10px rgba(170, 42, 42, 0.7),
         0 0 15px rgba(255,82,82,0.3),
         0 0 20px rgba(255,82,82,0.2);
     opacity: 0;
     pointer-events: none;
+    z-index: 999;
 }
 
 .borderGlow.glow-active::before {
     opacity: 1;
-    animation: pulseGlow 1s infinite;
+    animation: pulseGlow 1.1s infinite;
+    z-index: 999;
 }
 
 @keyframes pulseGlow {
@@ -266,6 +313,7 @@ p span {
         bottom: 0;
         left: 0;
         opacity: 0.1;
+        z-index: 999;
     }
     50% {
         top: -10px;
@@ -273,6 +321,7 @@ p span {
         bottom: -10px;
         left: -10px;
         opacity: 1;
+        z-index: 999;
     }
     100% {
         top: 0;
@@ -280,25 +329,391 @@ p span {
         bottom: 0;
         left: 0;
         opacity: 0;
+        z-index: 999;
     }
 }
 
 
-/* Mobile Stuff */
-@media (max-width: 500px) {
 
-    .borderGlow {
-        max-height: 100vh;
-        overflow-y: auto;
-    }
+/* Screen Variations */
+
+/* Baseline -> iPhone SE */
+@media (min-width: 35px) and (min-height: 35px) {
 
     .timerContainer {
-        padding: 1.6rem;
-        padding-top: 100px;
-        padding-bottom: 150px;
+        padding-bottom: 50px;
+        background-color: white;
     }
 
-    p span, #elapsedTime, #startTime {
-        font-size: 1.2rem;
+    h1 {
+        padding-top: 20px;
+        /* position: sticky;
+        top: 15px; */
+        font-size: 25px;
+        /* z-index: 3; */
     }
+
+    .content {
+        font-size: 5px;
+    }
+    
+    .toggleContainer {
+        padding-bottom: 50px;
+    }
+
+    #startTime, #elapsedTime {
+        font-size: 17px;
+        margin: 0; 
+        padding: 4px 0;
+    }
+
+    #switchReset {
+        min-height: 30px;
+        min-width: 100px;
+    }
+
+    .button-container {
+        gap: 10px;
+        width: 98%;
+    }
+
+    #firstRSIPush, #switchButton1, #switchButtonTube, 
+    #switchButton2, #switchButton3 {
+        font-size: 14px;
+        min-height: 30px;
+    }
+
+    #firstRSIPush:disabled span, #switchButton1:disabled span, #switchButtonTube:disabled span,
+    #switchButton2:disabled span, #switchButton3:disabled span {
+        font-size: 15px;
+    }
+
+    .copyButton {
+        width: 25px;
+        height: 35px;
+    }
+    
+    .copyButton img {
+        width: 25px;
+        height: 35px;
+    }
+
+    .toggleHandoff {
+        display: flex; 
+        align-items: center;
+        width: 40%;
+    }
+
+    #shareText {
+        width: 60%;
+    }
+
+}
+
+@media (min-width: 360px) and (min-height: 740px) {
+
+    .timerContainer {
+        max-height: 80vh;
+        width: 240px;
+    }
+
+    h1 {
+        /* position: sticky; */
+        /* top: 15px; */
+        font-size: 25px;
+        /* z-index: 3; */
+    }
+
+    .content {
+        font-size: 10px;
+    }
+    
+    .toggleContainer {
+        padding-bottom: 50px;
+    }
+
+    #startTime, #elapsedTime {
+        font-size: 20px;
+        margin: 0; 
+        padding: 4px 0;
+    }
+
+    #switchReset {
+        min-height: 40px;
+        min-width: 100px;
+    }
+
+    .button-container {
+        gap: 15px;
+        width: 98%;
+    }
+
+    #firstRSIPush, #switchButton1, #switchButtonTube, 
+    #switchButton2, #switchButton3 {
+        font-size: 16px;
+        min-height: 50px;
+    }
+
+    #firstRSIPush:disabled span, #switchButton1:disabled span, #switchButtonTube:disabled span,
+    #switchButton2:disabled span, #switchButton3:disabled span {
+        font-size: 16px;
+    }
+
+    .copyButton {
+        width: 35px;
+        height: 45px;
+    }
+    
+    .copyButton img {
+        width: 35px;
+        height: 45px;
+    }
+
+    .toggleHandoff {
+        display: flex; 
+        align-items: center;
+        width: 40%;
+    }
+
+    #shareText {
+        font-size: 18px;
+        width: 60%;
+    }
+
+}
+
+@media (min-width: 375px) and (min-height: 812px) {
+
+    .timerContainer {
+        max-height: 80vh;
+    }
+
+
+    h1 {
+        /* position: sticky;
+        top: 15px; */
+        font-size: 22px;
+        /* z-index: 3; */
+    }
+
+    .content {
+        font-size: 5px;
+    }
+    
+    .toggleContainer {
+        padding-bottom: 50px;
+    }
+
+    #startTime, #elapsedTime {
+        font-size: 17px;
+        margin: 0; 
+        padding: 4px 0;
+    }
+
+    #switchReset {
+        min-height: 30px;
+        min-width: 100px;
+    }
+
+    .button-container {
+        gap: 10px;
+        width: 100%;
+    }
+
+    #firstRSIPush, #switchButton1, #switchButtonTube, 
+    #switchButton2, #switchButton3 {
+        font-size: 14px;
+        min-height: 30px;
+    }
+
+    #firstRSIPush:disabled span, #switchButton1:disabled span, #switchButtonTube:disabled span,
+    #switchButton2:disabled span, #switchButton3:disabled span {
+        font-size: 15px;
+    }
+
+    .copyButton {
+        width: 25px;
+        height: 35px;
+    }
+    
+    .copyButton img {
+        width: 25px;
+        height: 35px;
+    }
+
+    .toggleHandoff {
+        display: flex; 
+        align-items: center;
+        width: 40%;
+    }
+
+    #shareText {
+        width: 60%;
+    }
+}
+
+@media (min-width: 390px) and (min-height: 844px) {
+
+    .timerContainer {
+        max-height: 80vh;
+        width: 270px;
+    }
+
+    .toggleContainer {
+        padding-bottom: 50px;
+    }
+
+}
+
+@media (min-width: 375px) and (min-height: 634px) {
+
+    .timerContainer {
+        max-height: 75vh;
+        width: 270px;
+    }
+
+    .toggleContainer {
+        padding-bottom: 50px;
+    }
+
+}
+
+@media (min-width: 414px) and (min-height: 896px) {
+
+    .timerContainer {
+        max-height: 80vh;
+        width: 290px;
+    }
+
+    .toggleContainer {
+        padding-bottom: 50px;
+    }
+
+}
+
+@media (min-width: 412px) and (min-height: 915px) {
+
+    .timerContainer {
+        max-height: 80vh;
+        width: 290px;
+    }
+
+    .toggleContainer {
+        padding-bottom: 50px;
+    }
+
+}
+
+@media (min-width: 430px) and (min-height: 739px) {
+
+    .timerContainer {
+        max-height: 80vh;
+        width: 310px;
+    }
+
+    h1 {
+        /* position: sticky;
+        top: 15px; */
+        font-size: 25px;
+        /* z-index: 3; */
+    }
+
+    .content {
+        font-size: 10px;
+    }
+    
+    .toggleContainer {
+        padding-bottom: 50px;
+    }
+
+    #startTime, #elapsedTime {
+        font-size: 20px;
+        margin: 0; 
+        padding: 4px 0;
+    }
+
+    #switchReset {
+        min-height: 40px;
+        min-width: 100px;
+    }
+
+    .button-container {
+        gap: 15px;
+        width: 98%;
+    }
+
+    #firstRSIPush, #switchButton1, #switchButtonTube, 
+    #switchButton2, #switchButton3 {
+        font-size: 16px;
+        min-height: 50px;
+    }
+
+    #firstRSIPush:disabled span, #switchButton1:disabled span, #switchButtonTube:disabled span,
+    #switchButton2:disabled span, #switchButton3:disabled span {
+        font-size: 16px;
+    }
+
+    .copyButton {
+        width: 35px;
+        height: 45px;
+    }
+    
+    .copyButton img {
+        width: 35px;
+        height: 45px;
+    }
+
+    .toggleHandoff {
+        display: flex; 
+        align-items: center;
+        width: 40%;
+    }
+
+    #shareText {
+        font-size: 18px;
+        width: 60%;
+    }
+
+}
+
+@media (min-width: 430px) and (min-height: 932px) {
+
+    .timerContainer {
+        max-height: 80vh;
+        width: 310px;
+    }
+
+    .toggleContainer {
+        padding-bottom: 50px;
+    }
+
+}
+
+/* PC / Laptop / iPad */
+@media (min-width: 720px) {
+
+    .timerContainer {
+        max-height: 70vh;
+        height: auto;
+        width: 350px;
+    }
+
+    .toggleContainer {
+        padding-bottom: 100px;
+    }
+
+}
+
+@media (min-width: 2560px) {
+
+    .timerContainer {
+        max-height: 50vh;
+        height: auto;
+        width: 350px;
+    }
+
+    .toggleContainer {
+        padding-bottom: 100px;
+    }
+
 }

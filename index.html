@@ -10,21 +10,24 @@
 <body>
     <div class="borderGlow">
         <div class="timerContainer">
-            <h1>RQI Airway Stopwatch</h1>
+            
+                <h1>RQI Airway Stopwatch</h1>
 
-            <div id="timingData">
-                <div class="content">
+                <div id="timingData">
+                    <div style="margin: 0px; padding-bottom: 1px;">
+                        <div class="content">
 
-                    <p><span><strong>Start Time:</strong></span></p>
-                    <p id="startTime"><span id="startTimeValue">N/A</span></p>
-                    
-                    <p><span><strong>Elapsed Time:</strong></span></p>
-                    <p id="elapsedTime"><span id="elapsedTimeValue">00:00:00</span></p>
+                            <p id="startTime"><strong>Start Time:</strong></p>
+                            <p><span id="startTimeValue">N/A</span></p>
+                            
+                            <p id="elapsedTime"><strong>Elapsed Time:</strong></p>
+                            <p><span id="elapsedTimeValue">00:00:00</span></p>
 
-                    <!-- <button id="switchReset">Reset Timer</button> -->
+                            <!-- <button id="switchReset">Reset Timer</button> -->
 
+                        </div>
+                    </div>
                 </div>
-            </div>
 
             <div class="button-container">
                 <div style="display: flex; width: 100%;">
@@ -32,28 +35,20 @@
                     <button style="width: 35%;" id="noRSIMeds">NO MEDS<span id="noRSIMedsValue"></span></button>
                 </div>
                 
-                <button id="switchButton1">BLADE FIRST ENTERED MOUTH<span id="bladeInsertedValue"></span></button>
+                <button id="switchButton1"">BLADE FIRST ENTERED MOUTH<span id="bladeInsertedValue"></span></button>
                 <button id="switchButtonTube">TUBE PLACED IN AIRWAY<span id="tubeInsertedValue"></span></button>
                 <button id="switchButton2">BLADE REMOVED FROM MOUTH<span id="bladeRemovedValue"></span></button>
                 <button id="switchButton3">FIRST BVM BREATH<span id="breathDeliveredValue"></span></button>
             </div>
           
-            <!-- <div id="dataProgressBar">
-                <div id="box1" class="progressBox">1</div>
-                <div id="box2" class="progressBox">2</div>
-                <div id="box3" class="progressBox">3</div>
-                <div id="box4" class="progressBox">4</div>
-                <div id="box5" class="progressBox">5</div>
-            </div> -->
-
             <br>
 
             <div class="toggleContainer">
-                <div class="toggleHandoff" style="display: flex; width: 40%;">
-                    <p style="width: 60%;">Share:</p>
+                <div class="toggleHandoff">
+                    <p id="shareText">Share:</p>
                     <button class="copyButton" onclick="universalCopyURL(this)">
-                        <img id="copyString" src="https://raw.githubusercontent.com/murp1124/airwaytimer/0882db7c174c6d3a65bc435edfafdca090b06bab/Images/copy-to-clipboard.svg" alt="Copy">
-                        <img id="copiedString" src="https://raw.githubusercontent.com/murp1124/airwaytimer/0882db7c174c6d3a65bc435edfafdca090b06bab/Images/copy-to-clipboard-success.svg" alt="Copied">
+                        <img id="copyString" src="/Images/copy-to-clipboard.svg" alt="Copy">
+                        <img id="copiedString" src="/Images/copy-to-clipboard-success.svg" alt="Copied">
                     </button>
                     <script src="copyURL.js"></script>
                 </div>

@@ -1,6 +1,12 @@
 let startTime;
 let timerInterval;
 
+
+document.getElementById('firstRSIPush').scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+});  
+
 function initFromURL() {
 
     const currState = new URLSearchParams(window.location.search);
@@ -42,6 +48,12 @@ function initFromURL() {
         switchButton1.disabled = false;
         
         noMedRoute = true;
+
+        // setTimeout(() => {
+        //     document.getElementById('switchButton1').scrollIntoView({
+        //         behavior: "smooth"
+        //     });  
+        // }, 500);
     }
 
 
@@ -61,6 +73,12 @@ function initFromURL() {
         noMeds.disabled = true;
         switchButton0.disabled = true;
         switchButton1.disabled = false;
+
+        // setTimeout(() => {
+        //     document.getElementById('switchButton1').scrollIntoView({
+        //         behavior: "smooth"
+        //     });  
+        // }, 500);
     }
 
 
@@ -75,6 +93,12 @@ function initFromURL() {
         document.getElementById('switchButton1').style.color = 'black';
         switchButton1.disabled = true;
         switchButtonTube.disabled = false;
+
+        // setTimeout(() => {
+        //     document.getElementById('switchButtonTube').scrollIntoView({
+        //         behavior: "smooth"
+        //     });  
+        // }, 500);
     }
 
 
@@ -89,6 +113,12 @@ function initFromURL() {
         document.getElementById('switchButtonTube').style.color = 'black';
         switchButtonTube.disabled = true;
         switchButton2.disabled = false;
+
+        // setTimeout(() => {
+        //     document.getElementById('switchButton2').scrollIntoView({
+        //         behavior: "smooth"
+        //     });  
+        // }, 500);
     }
 
 
@@ -104,6 +134,11 @@ function initFromURL() {
         switchButton2.disabled = true;
         switchButton3.disabled = false;
 
+        // setTimeout(() => {
+        //     document.getElementById('switchButton3').scrollIntoView({
+        //         behavior: "smooth"
+        //     });  
+        // }, 500);
     }
 
 
@@ -123,10 +158,10 @@ function initFromURL() {
         console.log(alerts);
 
         // Testing:
-        // const five_minutes = 10000
+        const five_minutes = 10000
 
         // Production:
-        const five_minutes = 5 * 60 * 1000;
+        // const five_minutes = 5 * 60 * 1000;
 
         const glowEffect = document.querySelector('.borderGlow');
 
@@ -146,6 +181,9 @@ function initFromURL() {
                 const url = new URL(window.location);
                 url.searchParams.set('alertLoop', i.toString());
                 window.history.pushState({}, "", url);
+
+                // DEBUG
+                console.log(i)
 
                 for (let pings = 0; pings < 3; pings++) {
                     setTimeout(() => {
@@ -288,7 +326,7 @@ function createReset() {
             
             setTimeout(() => {
                 taps = 0;
-                this.textContent = 'Reset Timer';
+                this.textContent = 'Reset';
                 this.style.backgroundColor = 'rgb(255, 80, 80)';
             }, 3000);
     
@@ -337,6 +375,14 @@ noMeds.addEventListener('click', function (){
     const url = new URL(window.location);
     url.searchParams.set('noMeds', true);
     window.history.pushState({}, '', url);
+
+    // setTimeout(() => {
+    //     document.getElementById('switchButton1').scrollIntoView({
+    //         behavior: "smooth",
+    //         block: "center"
+    //     });  
+    // }, 500);
+
 });
 
 switchButton0.addEventListener('click', function() {
@@ -357,6 +403,13 @@ switchButton0.addEventListener('click', function() {
     url.searchParams.set('rsiMedsElapsedTime', elapsedTimeStr);
     window.history.pushState({}, '', url);
 
+    // setTimeout(() => {
+    //     document.getElementById('switchButton1').scrollIntoView({
+    //         behavior: "smooth",
+    //         block: "center"
+    //     });  
+    // }, 500);
+
 });
 
 switchButton1.addEventListener('click', function() {
@@ -376,6 +429,14 @@ switchButton1.addEventListener('click', function() {
     url.searchParams.set('bladeInsertTime', currTimeStr);
     url.searchParams.set('bladeElapsedTime', elapsedTimeStr);
     window.history.pushState({}, '', url);
+
+    // setTimeout(() => {
+    //     document.getElementById('switchButtonTube').scrollIntoView({
+    //         behavior: "smooth",
+    //         block: "center"
+    //     });  
+    // }, 500);
+
 });
 
 switchButtonTube.addEventListener('click', function() {
@@ -392,6 +453,13 @@ switchButtonTube.addEventListener('click', function() {
     url.searchParams.set('tubeInsertedElapsed', elapsedTimeStr);
     window.history.pushState({}, '', url);
 
+    // setTimeout(() => {
+    //     document.getElementById('switchButton2').scrollIntoView({
+    //         behavior: "smooth",
+    //         block: "center"
+    //     });  
+    // }, 500);
+
 });
 
 switchButton2.addEventListener('click', function() {
@@ -407,11 +475,18 @@ switchButton2.addEventListener('click', function() {
     url.searchParams.set('bladeRemovalTime', currTimeStr);
     url.searchParams.set('bladeRemElapsedTime', elapsedTimeStr);
     window.history.pushState({}, '', url);
+    
+    // setTimeout(() => {
+    //     document.getElementById('switchButton3').scrollIntoView({
+    //         behavior: "smooth",
+    //         block: "center"
+    //     });  
+    // }, 500);
 
 });
 
 switchButton3.addEventListener('click', function() {
-   
+
     const {elapsedTimeStr, currTimeStr} = recordTime();
     document.getElementById('breathDeliveredValue').textContent = elapsedTimeStr + " at " + currTimeStr;
     document.getElementById('switchButton3').style.color = 'black';
@@ -424,11 +499,18 @@ switchButton3.addEventListener('click', function() {
     url.searchParams.set('alertLoop', '0');
     window.history.pushState({}, '', url)
 
+    // setTimeout(() => {
+    //     document.getElementById('firstRSIPush').scrollIntoView({
+    //         behavior: "smooth",
+    //         block: "center"
+    //     });  
+    // }, 500);
+
     // Testing:
-    // const five_minutes = 10000
+    const five_minutes = 10000
 
     // Production:
-    const five_minutes = 5 * 60 * 1000;
+    // const five_minutes = 5 * 60 * 1000;
 
     const glowEffect = document.querySelector('.borderGlow');
 
