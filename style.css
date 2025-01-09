@@ -412,10 +412,10 @@ p span {
 
 @media (min-width: 360px) and (min-height: 740px) {
 
-    .timerContainer {
+    /* .timerContainer {
         max-height: 80vh;
         width: 240px;
-    }
+    } */
 
     h1 {
         /* position: sticky; */
@@ -485,9 +485,9 @@ p span {
 @media (min-width: 375px) and (min-height: 812px) {
 
     .timerContainer {
-        max-height: 80vh;
+        width: 80%;
+        height: 80%;
     }
-
 
     h1 {
         /* position: sticky;
@@ -554,10 +554,10 @@ p span {
 
 @media (min-width: 390px) and (min-height: 844px) {
 
-    .timerContainer {
+    /* .timerContainer {
         max-height: 80vh;
         width: 270px;
-    }
+    } */
 
     .toggleContainer {
         padding-bottom: 50px;
@@ -567,10 +567,10 @@ p span {
 
 @media (min-width: 375px) and (min-height: 634px) {
 
-    .timerContainer {
+    /* .timerContainer {
         max-height: 75vh;
         width: 270px;
-    }
+    } */
 
     .toggleContainer {
         padding-bottom: 50px;
@@ -580,10 +580,10 @@ p span {
 
 @media (min-width: 414px) and (min-height: 896px) {
 
-    .timerContainer {
+    /* .timerContainer {
         max-height: 80vh;
         width: 290px;
-    }
+    } */
 
     .toggleContainer {
         padding-bottom: 50px;
@@ -593,10 +593,10 @@ p span {
 
 @media (min-width: 412px) and (min-height: 915px) {
 
-    .timerContainer {
+    /* .timerContainer {
         max-height: 80vh;
         width: 290px;
-    }
+    } */
 
     .toggleContainer {
         padding-bottom: 50px;
@@ -606,10 +606,10 @@ p span {
 
 @media (min-width: 430px) and (min-height: 739px) {
 
-    .timerContainer {
+    /* .timerContainer {
         max-height: 80vh;
         width: 310px;
-    }
+    } */
 
     h1 {
         /* position: sticky;
@@ -678,10 +678,10 @@ p span {
 
 @media (min-width: 430px) and (min-height: 932px) {
 
-    .timerContainer {
+    /* .timerContainer {
         max-height: 80vh;
         width: 310px;
-    }
+    } */
 
     .toggleContainer {
         padding-bottom: 50px;
